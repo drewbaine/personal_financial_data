@@ -1,0 +1,16 @@
+# Secrets and financial data — never commit
+.env
+.env.*
+!.env.example
+data/
+*.db
+*.db-journal
+*.sqlite*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+dist/

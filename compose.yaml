@@ -1,0 +1,23 @@
+# Home-server deployment. Usage:
+#   cp .env.example .env   # fill in values
+#   docker compose up -d --build
+services:
+  sync:
+    build: .
+    command: ["sync", "--every", "21600"]  # every 6 hours
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  mcp:
+    build: .
+    command: ["mcp", "--transport", "streamable-http", "--host", "0.0.0.0", "--port", "8765"]
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+    # The MCP server has no auth. Keep it bound to localhost and reach it over
+    # Tailscale/WireGuard or an authenticating reverse proxy — never expose it publicly.
+    ports:
+      - "127.0.0.1:8765:8765"
+    restart: unless-stopped
