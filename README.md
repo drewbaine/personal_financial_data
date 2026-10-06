@@ -6,7 +6,14 @@ Designed to start on a laptop against the Plaid **sandbox** and move to a home s
 
 ## Quick start (Plaid sandbox)
 
-Requires [uv](https://docs.astral.sh/uv/).
+Requires [uv](https://docs.astral.sh/uv/). On Linux/WSL/macOS:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env   # or open a new terminal
+```
+
+On WSL, keep the repo in your Linux home (e.g. `~/personal_financial_data`), not under `/mnt/c`: it's much faster there, and the virtualenv behaves.
 
 ```bash
 uv sync
