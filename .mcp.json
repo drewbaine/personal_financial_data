@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "finance": {
+      "command": "uv",
+      "args": ["run", "--quiet", "finance", "mcp"]
+    }
+  }
+}
