@@ -17,9 +17,10 @@ On WSL, keep the repo in your Linux home (e.g. `~/personal_financial_data`), not
 
 ```bash
 uv sync
-cp .env.example .env
-uv run finance gen-key            # paste into FINANCE_ENCRYPTION_KEY in .env
+cp -n .env.example .env       # -n: never overwrite an existing .env
+uv run finance gen-key            # paste into FINANCE_ENCRYPTION_KEY in .env (run once)
 # add PLAID_CLIENT_ID / PLAID_SECRET (sandbox) from https://dashboard.plaid.com/developers/keys
+# ...then save .env BEFORE running the commands below
 
 uv run finance sandbox-link       # creates a test Item at "First Platypus Bank"
 uv run finance sync --wait        # pulls transactions (waits for Plaid's initial pull)
@@ -43,7 +44,7 @@ Amounts follow Plaid's convention: **positive = money out, negative = money in**
 ## Home server
 
 ```bash
-cp .env.example .env   # fill in
+cp -n .env.example .env   # fill in
 docker compose up -d --build
 ```
 
